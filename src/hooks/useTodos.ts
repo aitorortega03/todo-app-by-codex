@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import {
   clearCompletedTodos,
   createTodo,
@@ -9,6 +9,7 @@ import {
   updateTodoTitle,
   validateTodoTitle,
 } from '../lib/todos.ts'
+import { readStoredTodos, writeStoredTodos } from '../lib/storage.ts'
 import type { Todo, TodoId } from '../types/todo.ts'
 
 interface TodosState {
@@ -27,8 +28,10 @@ interface MutationResult {
   error?: string
 }
 
-const initialState: TodosState = {
-  todos: [],
+function createInitialState(): TodosState {
+  return {
+    todos: readStoredTodos(),
+  }
 }
 
 function todosReducer(state: TodosState, action: TodosAction): TodosState {
@@ -64,7 +67,15 @@ function todosReducer(state: TodosState, action: TodosAction): TodosState {
 }
 
 export function useTodos() {
-  const [state, dispatch] = useReducer(todosReducer, initialState)
+  const [state, dispatch] = useReducer(
+    todosReducer,
+    undefined,
+    createInitialState,
+  )
+
+  useEffect(() => {
+    writeStoredTodos(state.todos)
+  }, [state.todos])
 
   function addTodo(title: string): MutationResult {
     const error = validateTodoTitle(title)
