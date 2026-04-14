@@ -32,18 +32,18 @@ export function TodoComposer({ onAddTodo }: TodoComposerProps) {
   }
 
   return (
-    <section className="rounded-[32px] border border-white/70 bg-white/80 p-5 shadow-[0_28px_90px_-48px_rgba(15,23,42,0.45)] backdrop-blur-xl md:p-6">
+    <section className="rounded-4xl border border-white/70 bg-white/80 p-5 shadow-[0_28px_90px_-48px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-colors duration-300 dark:border-white/10 dark:bg-slate-900/70 dark:shadow-[0_28px_90px_-48px_rgba(2,8,23,0.85)] md:p-6">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
               Capture
             </p>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950 md:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-950 transition-colors duration-300 dark:text-white md:text-3xl">
               Add what matters before it slips away.
             </h2>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-700">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-700 transition-colors duration-300 dark:bg-emerald-500/10 dark:text-emerald-300">
             <span className="h-2 w-2 rounded-full bg-emerald-500" />
             Fast add is now active
           </div>
@@ -54,10 +54,12 @@ export function TodoComposer({ onAddTodo }: TodoComposerProps) {
           onSubmit={handleSubmit}
         >
           <label className="space-y-2">
-            <span className="text-sm font-medium text-slate-700">New task</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              New task
+            </span>
             <input
               aria-invalid={errorMessage ? 'true' : 'false'}
-              className="min-h-16 w-full rounded-[24px] border border-slate-200 bg-slate-50/80 px-5 text-sm text-slate-900 shadow-inner transition-colors placeholder:text-slate-400 focus:border-blue-300"
+              className="min-h-16 w-full rounded-3xl border border-slate-200 bg-slate-50/80 px-5 text-sm text-slate-900 shadow-inner transition-colors placeholder:text-slate-400 focus:border-blue-300 dark:border-white/10 dark:bg-slate-950/40 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-sky-400"
               name="todo-title"
               onChange={handleChange}
               placeholder="Write your next task here..."
@@ -66,7 +68,7 @@ export function TodoComposer({ onAddTodo }: TodoComposerProps) {
           </label>
           <div className="flex items-end">
             <button
-              className="inline-flex min-h-16 w-full items-center justify-center rounded-[24px] bg-slate-950 px-6 text-sm font-semibold text-white shadow-[0_18px_32px_-24px_rgba(15,23,42,0.9)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-slate-800 disabled:translate-y-0 disabled:cursor-not-allowed disabled:bg-slate-300 md:w-auto"
+              className="inline-flex min-h-16 w-full items-center justify-center rounded-3xl bg-slate-950 px-6 text-sm font-semibold text-white shadow-[0_18px_32px_-24px_rgba(15,23,42,0.9)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-slate-800 disabled:translate-y-0 disabled:cursor-not-allowed disabled:bg-slate-300 dark:bg-sky-400 dark:text-slate-950 dark:hover:bg-sky-300 dark:disabled:bg-slate-700 dark:disabled:text-slate-400 md:w-auto"
               disabled={draft.trim().length === 0}
               type="submit"
             >
@@ -77,7 +79,7 @@ export function TodoComposer({ onAddTodo }: TodoComposerProps) {
 
         <p
           aria-live="polite"
-          className={`min-h-6 text-sm ${errorMessage ? 'text-rose-600' : 'text-slate-400'}`}
+          className={`min-h-6 text-sm ${errorMessage ? 'text-rose-600 dark:text-rose-400' : 'text-slate-400 dark:text-slate-500'}`}
           role={errorMessage ? 'alert' : undefined}
         >
           {errorMessage ??

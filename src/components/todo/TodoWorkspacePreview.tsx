@@ -50,12 +50,12 @@ export function TodoWorkspacePreview() {
                 <span className="text-sm font-medium text-slate-700">
                   New task
                 </span>
-                <div className="flex min-h-16 items-center rounded-[24px] border border-slate-200 bg-slate-50/80 px-5 text-sm text-slate-400 shadow-inner">
+                <div className="flex min-h-16 items-center rounded-3xl border border-slate-200 bg-slate-50/80 px-5 text-sm text-slate-400 shadow-inner">
                   Write your next task here...
                 </div>
               </label>
               <div className="flex items-end">
-                <div className="inline-flex min-h-16 w-full items-center justify-center rounded-[24px] bg-slate-950 px-6 text-sm font-semibold text-white shadow-[0_18px_32px_-24px_rgba(15,23,42,0.9)] md:w-auto">
+                <div className="inline-flex min-h-16 w-full items-center justify-center rounded-3xl bg-slate-950 px-6 text-sm font-semibold text-white shadow-[0_18px_32px_-24px_rgba(15,23,42,0.9)] md:w-auto">
                   Add Task
                 </div>
               </div>

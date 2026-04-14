@@ -24,7 +24,7 @@ export function TodoWorkspace() {
   const visibleTodos = getVisibleTodos(todos, activeFilter, searchQuery)
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_22rem]">
+    <section className="grid gap-6 xl:grid-cols-[minmax(0,1.2fr)_22rem]">
       <div className="space-y-6">
         <TodoComposer onAddTodo={addTodo} />
         <TodoToolbar
@@ -48,25 +48,27 @@ export function TodoWorkspace() {
         />
       </div>
 
-      <aside className="space-y-6">
-        <section className="rounded-[32px] border border-white/70 bg-[linear-gradient(180deg,#0f172a_0%,#172554_100%)] p-5 text-white shadow-[0_28px_90px_-48px_rgba(15,23,42,0.8)] md:p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-200/70">
+      <aside className="space-y-6 xl:sticky xl:top-6 xl:self-start">
+        <section className="rounded-4xl border border-white/70 bg-[linear-gradient(180deg,#0f172a_0%,#172554_100%)] p-5 text-white shadow-[0_28px_90px_-48px_rgba(15,23,42,0.8)] transition-colors duration-300 dark:border-white/10 dark:bg-[linear-gradient(180deg,#020617_0%,#0f172a_100%)] dark:shadow-[0_28px_90px_-48px_rgba(2,8,23,0.95)] md:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-200/70 dark:text-sky-200/60">
             Focus Snapshot
           </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight">A quick scan should tell you what is left.</h2>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight">
+            A quick scan should tell you what is left.
+          </h2>
           <div className="mt-5 grid gap-3">
-            <div className="rounded-[24px] border border-white/10 bg-white/6 p-4">
+            <div className="rounded-3xl border border-white/10 bg-white/6 p-4 dark:bg-white/4">
               <p className="text-sm text-blue-100/70">Pending tasks</p>
               <p className="mt-2 text-4xl font-semibold tracking-tight">
                 {pendingCount}
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-[24px] border border-white/10 bg-white/6 p-4">
+              <div className="rounded-3xl border border-white/10 bg-white/6 p-4 dark:bg-white/4">
                 <p className="text-sm text-blue-100/70">Completed</p>
                 <p className="mt-2 text-2xl font-semibold">{completedCount}</p>
               </div>
-              <div className="rounded-[24px] border border-white/10 bg-white/6 p-4">
+              <div className="rounded-3xl border border-white/10 bg-white/6 p-4 dark:bg-white/4">
                 <p className="text-sm text-blue-100/70">Visible now</p>
                 <p className="mt-2 text-2xl font-semibold">
                   {visibleTodos.length}
@@ -76,11 +78,11 @@ export function TodoWorkspace() {
           </div>
         </section>
 
-        <section className="rounded-[32px] border border-white/70 bg-white/80 p-5 shadow-[0_28px_90px_-48px_rgba(15,23,42,0.45)] backdrop-blur-xl md:p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+        <section className="rounded-4xl border border-white/70 bg-white/80 p-5 shadow-[0_28px_90px_-48px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-colors duration-300 dark:border-white/10 dark:bg-slate-900/70 dark:shadow-[0_28px_90px_-48px_rgba(2,8,23,0.85)] md:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
             Organization Notes
           </p>
-          <div className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
+          <div className="mt-4 space-y-3 text-sm leading-7 text-slate-600 transition-colors duration-300 dark:text-slate-300">
             <p>
               Filters now let you isolate active or completed work without
               leaving the main list.

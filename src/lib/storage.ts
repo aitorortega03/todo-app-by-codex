@@ -1,4 +1,6 @@
 import type { Todo } from '../types/todo.ts'
+import type { Theme } from '../types/theme.ts'
+import { isTheme } from './theme.ts'
 
 const STORAGE_KEYS = {
   todos: 'modern-todo-app.todos',
@@ -55,6 +57,32 @@ export function writeStoredTodos(todos: Todo[]) {
 
   try {
     window.localStorage.setItem(STORAGE_KEYS.todos, JSON.stringify(todos))
+  } catch {
+    // Ignore storage write failures so the UI remains usable.
+  }
+}
+
+export function readStoredTheme(): Theme | null {
+  if (!isBrowser()) {
+    return null
+  }
+
+  try {
+    const rawValue = window.localStorage.getItem(STORAGE_KEYS.theme)
+
+    return isTheme(rawValue) ? rawValue : null
+  } catch {
+    return null
+  }
+}
+
+export function writeStoredTheme(theme: Theme) {
+  if (!isBrowser()) {
+    return
+  }
+
+  try {
+    window.localStorage.setItem(STORAGE_KEYS.theme, theme)
   } catch {
     // Ignore storage write failures so the UI remains usable.
   }

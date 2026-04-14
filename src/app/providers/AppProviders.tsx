@@ -1,7 +1,6 @@
-import type { PropsWithChildren, ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
+import { ThemeProvider } from '../../hooks/useTheme.tsx'
 
-export function AppProviders({
-  children,
-}: PropsWithChildren): ReactNode {
-  return children
+export function AppProviders({ children }: PropsWithChildren) {
+  return <ThemeProvider>{children}</ThemeProvider>
 }

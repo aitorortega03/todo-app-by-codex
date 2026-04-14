@@ -25,16 +25,16 @@ export function TodoList({
     const isFiltered = activeFilter !== 'all'
 
     return (
-      <section className="rounded-[32px] border border-dashed border-slate-200 bg-white/70 p-6 text-center shadow-[0_20px_60px_-48px_rgba(15,23,42,0.35)] backdrop-blur">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+      <section className="rounded-4xl border border-dashed border-slate-200 bg-white/70 p-6 text-center shadow-[0_20px_60px_-48px_rgba(15,23,42,0.35)] backdrop-blur transition-colors duration-300 dark:border-white/10 dark:bg-slate-900/60 dark:shadow-[0_20px_60px_-48px_rgba(2,8,23,0.85)]">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
           {hasTodos ? 'No matches' : 'Empty state'}
         </p>
-        <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
+        <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950 transition-colors duration-300 dark:text-white">
           {hasTodos
             ? 'No tasks match your current view.'
             : 'Your list is ready for its first task.'}
         </h2>
-        <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-slate-600">
+        <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-slate-600 transition-colors duration-300 dark:text-slate-300">
           {hasTodos
             ? `Try ${
                 hasSearch && isFiltered
@@ -50,13 +50,13 @@ export function TodoList({
   }
 
   return (
-    <section className="rounded-[32px] border border-white/70 bg-white/78 p-5 shadow-[0_28px_90px_-48px_rgba(15,23,42,0.45)] backdrop-blur-xl md:p-6">
+    <section className="rounded-4xl border border-white/70 bg-white/78 p-5 shadow-[0_28px_90px_-48px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-colors duration-300 dark:border-white/10 dark:bg-slate-900/70 dark:shadow-[0_28px_90px_-48px_rgba(2,8,23,0.85)] md:p-6">
       <div className="flex flex-col gap-5">
         <div className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
             Tasks
           </p>
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-950 transition-colors duration-300 dark:text-white">
             Stay focused on the tasks that matter right now.
           </h2>
         </div>

@@ -64,7 +64,7 @@ export function TodoItem({
 
   return (
     <li>
-      <article className="rounded-[24px] border border-slate-200/80 bg-white p-4 shadow-[0_20px_40px_-34px_rgba(15,23,42,0.4)] transition-transform duration-200 hover:-translate-y-0.5">
+      <article className="rounded-3xl border border-slate-200/80 bg-white p-4 shadow-[0_20px_40px_-34px_rgba(15,23,42,0.4)] transition-transform duration-200 hover:-translate-y-0.5 dark:border-white/10 dark:bg-slate-950/35 dark:shadow-[0_20px_40px_-34px_rgba(2,8,23,0.8)]">
         <div className="flex items-start gap-3">
           <button
             aria-label={
@@ -74,8 +74,8 @@ export function TodoItem({
             }
             className={`mt-1.5 h-5 w-5 rounded-full border-2 transition-colors ${
               todo.completed
-                ? 'border-emerald-500 bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)]'
-                : 'border-slate-300 bg-white hover:border-slate-400'
+                ? 'border-emerald-500 bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)] dark:shadow-[0_0_0_4px_rgba(16,185,129,0.2)]'
+                : 'border-slate-300 bg-white hover:border-slate-400 dark:border-slate-600 dark:bg-slate-900 dark:hover:border-slate-400'
             }`}
             onClick={() => onToggle(todo.id)}
             type="button"
@@ -89,12 +89,12 @@ export function TodoItem({
             {isEditing ? (
               <div className="space-y-3">
                 <label className="block space-y-2">
-                  <span className="text-sm font-medium text-slate-700">
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
                     Edit task
                   </span>
                   <input
                     aria-invalid={errorMessage ? 'true' : 'false'}
-                    className="min-h-12 w-full rounded-[18px] border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 focus:border-blue-300"
+                    className="min-h-12 w-full rounded-[18px] border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 focus:border-blue-300 dark:border-white/10 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-sky-400"
                     onChange={(event) => {
                       setDraft(event.target.value)
 
@@ -109,14 +109,14 @@ export function TodoItem({
                 </label>
                 <div className="flex flex-wrap items-center gap-2">
                   <button
-                    className="rounded-full bg-slate-950 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
+                    className="rounded-full bg-slate-950 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-sky-400 dark:text-slate-950 dark:hover:bg-sky-300"
                     onClick={handleSave}
                     type="button"
                   >
                     Save
                   </button>
                   <button
-                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50"
+                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-950 dark:text-slate-300 dark:hover:bg-slate-800"
                     onClick={handleCancel}
                     type="button"
                   >
@@ -124,7 +124,7 @@ export function TodoItem({
                   </button>
                   <p
                     aria-live="polite"
-                    className={`text-xs ${errorMessage ? 'text-rose-600' : 'text-slate-400'}`}
+                    className={`text-xs ${errorMessage ? 'text-rose-600 dark:text-rose-400' : 'text-slate-400 dark:text-slate-500'}`}
                     role={errorMessage ? 'alert' : undefined}
                   >
                     {errorMessage ?? 'Press Enter to save or Escape to cancel.'}
@@ -137,13 +137,13 @@ export function TodoItem({
                   <h3
                     className={`text-base font-semibold transition-colors ${
                       todo.completed
-                        ? 'text-slate-400 line-through'
-                        : 'text-slate-900'
+                        ? 'text-slate-400 line-through dark:text-slate-500'
+                        : 'text-slate-900 dark:text-slate-100'
                     }`}
                   >
                     {todo.title}
                   </h3>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     {todo.completed
                       ? 'Completed just now. You can reopen it any time.'
                       : 'Open task ready for your next action.'}
@@ -151,14 +151,14 @@ export function TodoItem({
                 </div>
                 <div className="flex gap-2 text-xs font-medium">
                   <button
-                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-600 transition-colors hover:bg-slate-100"
+                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-600 transition-colors hover:bg-slate-100 dark:border-white/10 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
                     onClick={handleStartEditing}
                     type="button"
                   >
                     Edit
                   </button>
                   <button
-                    className="rounded-full border border-rose-200 bg-rose-50 px-3 py-1.5 text-rose-600 transition-colors hover:bg-rose-100"
+                    className="rounded-full border border-rose-200 bg-rose-50 px-3 py-1.5 text-rose-600 transition-colors hover:bg-rose-100 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300 dark:hover:bg-rose-500/15"
                     onClick={() => onDelete(todo.id)}
                     type="button"
                   >
