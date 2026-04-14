@@ -6,6 +6,12 @@ export function AppShell({ children }: PropsWithChildren) {
 
   return (
     <main className="relative min-h-screen overflow-hidden px-4 py-8 text-slate-900 transition-colors duration-300 dark:text-slate-100 md:px-6 md:py-12">
+      <a
+        className="absolute left-4 top-4 z-20 -translate-y-20 rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition-transform focus:translate-y-0 dark:bg-sky-400 dark:text-slate-950"
+        href="#todo-workspace"
+      >
+        Skip to tasks
+      </a>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-136 max-w-6xl rounded-b-[3rem] bg-[radial-gradient(circle_at_top,rgba(77,124,255,0.18),transparent_55%)] dark:bg-[radial-gradient(circle_at_top,rgba(96,165,250,0.24),transparent_58%)]"
@@ -54,10 +60,12 @@ export function AppShell({ children }: PropsWithChildren) {
               <div
                 aria-label="Theme selector"
                 className="mt-4 inline-flex rounded-full border border-white/10 bg-white/5 p-1"
-                role="group"
+                role="radiogroup"
               >
                 <button
                   aria-pressed={theme === 'light'}
+                  aria-label="Use light theme"
+                  role="radio"
                   className={`rounded-full px-4 py-2 text-xs font-semibold transition-colors ${
                     theme === 'light'
                       ? 'bg-white text-slate-950 shadow-sm'
@@ -70,6 +78,8 @@ export function AppShell({ children }: PropsWithChildren) {
                 </button>
                 <button
                   aria-pressed={theme === 'dark'}
+                  aria-label="Use dark theme"
+                  role="radio"
                   className={`rounded-full px-4 py-2 text-xs font-semibold transition-colors ${
                     theme === 'dark'
                       ? 'bg-white text-slate-950 shadow-sm'

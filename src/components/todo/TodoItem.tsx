@@ -19,6 +19,8 @@ export function TodoItem({
   const [draft, setDraft] = useState(todo.title)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const editInputId = `edit-task-${todo.id}`
+  const editMessageId = `edit-task-feedback-${todo.id}`
 
   useEffect(() => {
     if (isEditing) {
@@ -89,12 +91,18 @@ export function TodoItem({
             {isEditing ? (
               <div className="space-y-3">
                 <label className="block space-y-2">
-                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                  <span
+                    className="text-sm font-medium text-slate-700 dark:text-slate-200"
+                    id={`${editInputId}-label`}
+                  >
                     Edit task
                   </span>
                   <input
+                    aria-describedby={editMessageId}
                     aria-invalid={errorMessage ? 'true' : 'false'}
+                    aria-labelledby={`${editInputId}-label`}
                     className="min-h-12 w-full rounded-[18px] border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 focus:border-blue-300 dark:border-white/10 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-sky-400"
+                    id={editInputId}
                     onChange={(event) => {
                       setDraft(event.target.value)
 
@@ -124,6 +132,7 @@ export function TodoItem({
                   </button>
                   <p
                     aria-live="polite"
+                    id={editMessageId}
                     className={`text-xs ${errorMessage ? 'text-rose-600 dark:text-rose-400' : 'text-slate-400 dark:text-slate-500'}`}
                     role={errorMessage ? 'alert' : undefined}
                   >

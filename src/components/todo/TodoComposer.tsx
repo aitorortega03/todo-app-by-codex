@@ -8,6 +8,8 @@ interface TodoComposerProps {
 export function TodoComposer({ onAddTodo }: TodoComposerProps) {
   const [draft, setDraft] = useState('')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const inputId = 'new-todo-title'
+  const messageId = 'new-todo-feedback'
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -50,16 +52,19 @@ export function TodoComposer({ onAddTodo }: TodoComposerProps) {
         </div>
 
         <form
+          aria-describedby={messageId}
           className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto]"
           onSubmit={handleSubmit}
         >
-          <label className="space-y-2">
+          <label className="space-y-2" htmlFor={inputId}>
             <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
               New task
             </span>
             <input
+              aria-describedby={messageId}
               aria-invalid={errorMessage ? 'true' : 'false'}
               className="min-h-16 w-full rounded-3xl border border-slate-200 bg-slate-50/80 px-5 text-sm text-slate-900 shadow-inner transition-colors placeholder:text-slate-400 focus:border-blue-300 dark:border-white/10 dark:bg-slate-950/40 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-sky-400"
+              id={inputId}
               name="todo-title"
               onChange={handleChange}
               placeholder="Write your next task here..."
@@ -79,6 +84,7 @@ export function TodoComposer({ onAddTodo }: TodoComposerProps) {
 
         <p
           aria-live="polite"
+          id={messageId}
           className={`min-h-6 text-sm ${errorMessage ? 'text-rose-600 dark:text-rose-400' : 'text-slate-400 dark:text-slate-500'}`}
           role={errorMessage ? 'alert' : undefined}
         >

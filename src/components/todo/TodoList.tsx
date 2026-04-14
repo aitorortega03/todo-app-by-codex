@@ -61,7 +61,7 @@ export function TodoList({
           </h2>
         </div>
 
-        <ul className="space-y-3">
+        <ul aria-label="Todo items" className="space-y-3">
           {todos.map((todo) => (
             <TodoItem
               key={todo.id}

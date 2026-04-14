@@ -28,6 +28,9 @@ export function TodoToolbar({
   searchQuery,
   visibleCount,
 }: TodoToolbarProps) {
+  const searchInputId = 'todo-search'
+  const resultsSummaryId = 'todo-results-summary'
+
   function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
     onSearchChange(event.target.value)
   }
@@ -51,12 +54,14 @@ export function TodoToolbar({
         </div>
 
         <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_auto]">
-          <label className="space-y-2">
+          <label className="space-y-2" htmlFor={searchInputId}>
             <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
               Search tasks
             </span>
             <input
+              aria-describedby={resultsSummaryId}
               className="min-h-14 w-full rounded-[20px] border border-slate-200 bg-white px-4 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-300 dark:border-white/10 dark:bg-slate-950/40 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-sky-400"
+              id={searchInputId}
               onChange={handleSearchChange}
               placeholder="Search by title or keyword"
               value={searchQuery}
@@ -70,11 +75,11 @@ export function TodoToolbar({
             <div
               aria-label="Task filters"
               className="flex flex-wrap gap-2"
-              role="group"
+              role="tablist"
             >
               {filterOptions.map((option) => (
                 <button
-                  aria-pressed={activeFilter === option.value}
+                  aria-selected={activeFilter === option.value}
                   className={`inline-flex rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     activeFilter === option.value
                       ? 'bg-slate-950 text-white shadow-[0_12px_24px_-18px_rgba(15,23,42,0.8)] dark:bg-sky-400 dark:text-slate-950'
@@ -82,6 +87,7 @@ export function TodoToolbar({
                   }`}
                   key={option.value}
                   onClick={() => onFilterChange(option.value)}
+                  role="tab"
                   type="button"
                 >
                   {option.label}
@@ -92,7 +98,10 @@ export function TodoToolbar({
         </div>
 
         <div className="flex flex-col gap-3 rounded-3xl border border-slate-200/80 bg-slate-50/80 p-4 transition-colors duration-300 dark:border-white/10 dark:bg-slate-950/35 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">
+          <div
+            className="flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300"
+            id={resultsSummaryId}
+          >
             <span className="rounded-full bg-white px-3 py-1.5 shadow-sm transition-colors duration-300 dark:bg-slate-900 dark:shadow-none">
               Showing {visibleCount} task{visibleCount === 1 ? '' : 's'}
             </span>
