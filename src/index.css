@@ -2,7 +2,8 @@
 
 :root {
   color-scheme: light;
-  font-family: Inter, "Segoe UI", sans-serif;
+  font-family:
+    "Plus Jakarta Sans", Inter, "Segoe UI", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   background-color: #f4f7fb;
@@ -25,8 +26,8 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(circle at top, rgba(74, 124, 255, 0.12), transparent 30%),
-    linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+    radial-gradient(circle at top, rgba(74, 124, 255, 0.16), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef3f9 45%, #edf2f8 100%);
   color: #162033;
 }
 
@@ -44,6 +45,13 @@ body[data-theme="dark"] #root {
 
 #root {
   min-height: 100vh;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
 }
 
 button,

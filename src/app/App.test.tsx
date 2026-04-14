@@ -3,12 +3,12 @@ import { describe, expect, it } from 'vitest'
 import App from './App.tsx'
 
 describe('App', () => {
-  it('renders the phase 1 foundation message', () => {
+  it('renders the main product heading', () => {
     render(<App />)
 
     expect(
       screen.getByRole('heading', {
-        name: /the foundation for a polished react todo app is ready/i,
+        name: /your day, clearly under control/i,
       }),
     ).toBeInTheDocument()
   })
