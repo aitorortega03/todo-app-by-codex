@@ -1,12 +1,12 @@
 import { AppShell } from '../components/layout/AppShell.tsx'
-import { TodoWorkspacePreview } from '../components/todo/TodoWorkspacePreview.tsx'
+import { TodoWorkspace } from '../components/todo/TodoWorkspace.tsx'
 import { AppProviders } from './providers/AppProviders.tsx'
 
 function App() {
   return (
     <AppProviders>
       <AppShell>
-        <TodoWorkspacePreview />
+        <TodoWorkspace />
       </AppShell>
     </AppProviders>
   )
