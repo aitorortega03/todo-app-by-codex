@@ -1,4 +1,4 @@
-import type { Todo, TodoId } from '../types/todo.ts'
+import type { Todo, TodoFilter, TodoId } from '../types/todo.ts'
 
 export function normalizeTodoTitle(title: string) {
   return title.replace(/\s+/g, ' ').trim()
@@ -47,4 +47,48 @@ export function updateTodoTitle(todos: Todo[], id: TodoId, title: string) {
         }
       : todo,
   )
+}
+
+export function clearCompletedTodos(todos: Todo[]) {
+  return todos.filter((todo) => !todo.completed)
+}
+
+export function getPendingTodoCount(todos: Todo[]) {
+  return todos.filter((todo) => !todo.completed).length
+}
+
+export function getCompletedTodoCount(todos: Todo[]) {
+  return todos.filter((todo) => todo.completed).length
+}
+
+export function filterTodos(todos: Todo[], filter: TodoFilter) {
+  switch (filter) {
+    case 'active':
+      return todos.filter((todo) => !todo.completed)
+    case 'completed':
+      return todos.filter((todo) => todo.completed)
+    case 'all':
+    default:
+      return todos
+  }
+}
+
+export function searchTodos(todos: Todo[], query: string) {
+  const normalizedQuery = normalizeTodoTitle(query).toLocaleLowerCase()
+
+  if (normalizedQuery.length === 0) {
+    return todos
+  }
+
+  return todos.filter((todo) =>
+    todo.title.toLocaleLowerCase().includes(normalizedQuery),
+  )
+}
+
+export function getVisibleTodos(
+  todos: Todo[],
+  filter: TodoFilter,
+  query: string,
+) {
+  return searchTodos(filterTodos(todos, filter), query)
 }

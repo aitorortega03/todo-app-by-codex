@@ -1,7 +1,10 @@
 import { useReducer } from 'react'
 import {
+  clearCompletedTodos,
   createTodo,
   deleteTodo,
+  getCompletedTodoCount,
+  getPendingTodoCount,
   toggleTodo,
   updateTodoTitle,
   validateTodoTitle,
@@ -16,6 +19,7 @@ type TodosAction =
   | { type: 'add'; title: string }
   | { type: 'toggle'; id: TodoId }
   | { type: 'delete'; id: TodoId }
+  | { type: 'clear-completed' }
   | { type: 'update'; id: TodoId; title: string }
 
 interface MutationResult {
@@ -43,6 +47,11 @@ function todosReducer(state: TodosState, action: TodosAction): TodosState {
       return {
         ...state,
         todos: deleteTodo(state.todos, action.id),
+      }
+    case 'clear-completed':
+      return {
+        ...state,
+        todos: clearCompletedTodos(state.todos),
       }
     case 'update':
       return {
@@ -95,9 +104,16 @@ export function useTodos() {
     dispatch({ type: 'delete', id })
   }
 
+  function clearCompleted() {
+    dispatch({ type: 'clear-completed' })
+  }
+
   return {
     todos: state.todos,
+    pendingCount: getPendingTodoCount(state.todos),
+    completedCount: getCompletedTodoCount(state.todos),
     addTodo,
+    clearCompleted,
     editTodo,
     completeTodo,
     removeTodo,
